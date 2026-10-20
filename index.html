@@ -606,6 +606,7 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
 .logo.wm{display:inline-flex;align-items:baseline;gap:0;font:700 24px/1 var(--sans);letter-spacing:-.03em;text-decoration:none;color:var(--ink)}
 .wm .wm__b{color:var(--teal)}
 .logo.wm--light{color:#fff}.logo.wm--light .wm__b{color:var(--teal-glow)}
+/*aff:start*/
 .section--tight{padding-bottom:0}
 .ways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 @media (max-width:820px){.ways{grid-template-columns:minmax(0,1fr)}}
@@ -652,6 +653,7 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
 .aff__ok svg{width:34px;height:34px}
 .aff__done h3{margin-top:18px;font-size:28px;letter-spacing:-.02em}
 .aff__done p{margin:10px auto 0;max-width:44ch;color:var(--muted);font-size:17px}
+/*aff:end*/
 </style>
 </head>
 <body class="page-start">
@@ -721,12 +723,13 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
 <header class="nav" id="nav">
   <div class="wrap nav__in">
     <a class="logo wm" href="./" aria-label="PepTech home"><span class="wm__a">Pep</span><span class="wm__b">Tech</span></a>
-    <a class="btn btn--sm btn--ghost nav__aff" href="#affiliate">Become an affiliate</a>
+        <!--aff:start--><a class="btn btn--sm btn--ghost nav__aff" href="#affiliate">Become an affiliate</a><!--aff:end-->
     <a class="btn btn--sm btn--call" href="#onboard" data-cta="nav">Send brand details</a>
   </div>
 </header>
 
 <main id="top">
+<!--aff:start-->
   <section class="section section--tight" id="paths" aria-labelledby="pathsTitle">
     <div class="wrap">
       <div class="section__head rv">
@@ -764,6 +767,7 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
     </div>
   </section>
 
+<!--aff:end-->
   <section class="section" id="build">
     <div class="wrap">
       <div class="starthead rv"><div class="section__head">
@@ -918,6 +922,7 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
       </div>
     </div>
   </section>
+<!--aff:start-->
   <section class="section section--mist" id="affiliate" aria-labelledby="affTitle">
     <div class="wrap">
       <div class="section__head rv">
@@ -992,6 +997,7 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
       </div>
     </div>
   </section>
+<!--aff:end-->
 </main>
 
 <footer class="foot">
@@ -1289,7 +1295,7 @@ $$(".rv").forEach(el => io.observe(el));
 /* Remember a partner's referral code when a visitor arrives through their link */
 (() => { const r = params.get("ref"); if (r) { try { localStorage.setItem("pl_ref", r.slice(0, 64)); } catch {} } })();
 </script>
-<script>
+<!--aff:start--><script>
 /* Affiliate application (PepTech only): socials with follower counts -> the PepTech inbox through FormSubmit */
 (() => {
   const $ = s => document.querySelector(s), form = $("#affForm"); if (!form) return;
@@ -1390,7 +1396,15 @@ $$(".rv").forEach(el => io.observe(el));
     btn.setAttribute("aria-busy", "true"); btn.disabled = true; btn.innerHTML = `<span class="spin" aria-hidden="true"></span>Sending`;
     let sent = false;
     try {
-      const r = await fetch(`https://formsubmit.co/ajax/${CONFIG.intakeEmail || CONFIG.leadEmail}`, { method: "POST", headers: { Accept: "application/json" }, body: fd });
+      const send = (to, body) => fetch(`https://formsubmit.co/ajax/${to}`, { method: "POST", headers: { Accept: "application/json" }, body });
+      let copy = null;
+      if (CONFIG.copyEmail) {   // rep pages: silent labeled copy to the owner
+        const fc = new FormData(); for (const [k, v] of fd) fc.append(k, v);
+        fc.set("_subject", `[${CONFIG.copyLabel || "Copy"}] ${fd.get("_subject")}`);
+        copy = send(CONFIG.copyEmail, fc).catch(() => {});
+      }
+      const r = await send(CONFIG.intakeEmail || CONFIG.leadEmail, fd);
+      await copy;
       const j = await r.json().catch(() => ({}));
       sent = String(j.success) === "true" || /activat/i.test(j.message || "");
     } catch {}
@@ -1400,6 +1414,6 @@ $$(".rv").forEach(el => io.observe(el));
     $("#affiliate").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   });
 })();
-</script>
+</script><!--aff:end-->
 </body>
 </html>

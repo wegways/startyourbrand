@@ -652,6 +652,7 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
 .aff__ok{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--teal-wash);color:var(--teal)}
 .aff__ok svg{width:34px;height:34px}
 .aff__done h3{margin-top:18px;font-size:28px;letter-spacing:-.02em}
+.aff__done p a{color:var(--teal-ink);font-weight:600}
 .aff__done p{margin:10px auto 0;max-width:44ch;color:var(--muted);font-size:17px}
 /*aff:end*/
 </style>
@@ -723,7 +724,7 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
 <header class="nav" id="nav">
   <div class="wrap nav__in">
     <a class="logo wm" href="./" aria-label="PepTech home"><span class="wm__a">Pep</span><span class="wm__b">Tech</span></a>
-        <!--aff:start--><a class="btn btn--sm btn--ghost nav__aff" href="#affiliate">Become an affiliate</a><!--aff:end-->
+            <!--aff:start--><a class="btn btn--sm btn--ghost nav__aff" href="#affiliate">Become an affiliate</a><!--aff:end-->
     <a class="btn btn--sm btn--call" href="#onboard" data-cta="nav">Send brand details</a>
   </div>
 </header>
@@ -992,7 +993,7 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
         <div class="aff__done" id="affDone" hidden tabindex="-1">
           <span class="aff__ok"><svg aria-hidden="true"><use href="#i-check-circle"/></svg></span>
           <h3>Application received.</h3>
-          <p>We'll review your accounts and email you at <b id="affDoneEmail"></b> with next steps.</p>
+          <p>We'll review your accounts and reach out with next steps. Questions? Email <a id="affDoneEmail"></a>.</p>
         </div>
       </div>
     </div>
@@ -1410,7 +1411,7 @@ $$(".rv").forEach(el => io.observe(el));
     } catch {}
     btn.removeAttribute("aria-busy"); btn.disabled = false; btn.innerHTML = label;
     if (!sent) { alert.textContent = "We couldn't send your application. Check your connection and try again, or email us your handles."; alert.style.display = "block"; alert.scrollIntoView({ block: "center" }); return; }
-    form.hidden = true; $("#affDoneEmail").textContent = email; $("#affDone").hidden = false; $("#affDone").focus();
+    form.hidden = true; const contact = CONFIG.intakeEmail || CONFIG.leadEmail, d = $("#affDoneEmail"); d.textContent = contact; d.href = "mailto:" + contact; $("#affDone").hidden = false; $("#affDone").focus();
     $("#affiliate").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   });
 })();

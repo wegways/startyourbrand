@@ -606,6 +606,52 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
 .logo.wm{display:inline-flex;align-items:baseline;gap:0;font:700 24px/1 var(--sans);letter-spacing:-.03em;text-decoration:none;color:var(--ink)}
 .wm .wm__b{color:var(--teal)}
 .logo.wm--light{color:#fff}.logo.wm--light .wm__b{color:var(--teal-glow)}
+.section--tight{padding-bottom:0}
+.ways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:820px){.ways{grid-template-columns:minmax(0,1fr)}}
+.way{display:flex;flex-direction:column;padding:clamp(24px,3.4vw,40px);border-radius:var(--radius-lg);background:#fff;box-shadow:0 0 0 1px var(--line),0 18px 40px -24px rgba(30,33,42,.35)}
+.way--dark{background:radial-gradient(120% 90% at 100% 0,rgba(95,182,194,.22),transparent 60%),var(--ink);color:#E8EBEF;box-shadow:0 18px 40px -20px rgba(30,33,42,.6)}
+.way__k{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink)}
+.way--dark .way__k{color:var(--teal-glow)}
+.way__big{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin-top:14px}
+.way__amt{font-size:clamp(48px,6vw,68px);font-weight:700;letter-spacing:-.045em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.way--dark .way__amt{color:#fff}
+.way__per{font-size:15px;color:var(--muted)}
+.way--dark .way__per{color:#9AA1AD}
+.way__lead{margin-top:14px;font-size:18px;line-height:1.45;color:var(--ink-2);max-width:34ch}
+.way--dark .way__lead{color:#C4CAD3}
+.way__list{list-style:none;padding:0;margin:22px 0 28px;display:grid;gap:10px}
+.way__list li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:15.5px;line-height:1.4}
+.way__list svg{width:18px;height:18px;margin-top:1px;color:var(--teal)}
+.way--dark .way__list svg{color:var(--teal-glow)}
+.way__cta{margin-top:auto;align-self:flex-start}
+.way__cta--light{--bg:var(--teal-glow);--fg:var(--ink)}
+.way__cta--light:hover{background:#7CC6D0;color:var(--ink)}
+.way__fine{margin-top:14px;font-size:13px;color:#8D94A0}
+.nav__aff{margin-left:auto;margin-right:-22px}
+@media (max-width:560px){.nav__aff{display:none}}
+.socials{display:grid;gap:10px}
+.soc{display:grid;grid-template-columns:150px minmax(0,1fr) 170px 40px;gap:10px;align-items:center;padding:10px;border-radius:12px;background:var(--mist);animation:panelIn .35s var(--ease-out)}
+.soc__p{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding-left:4px}
+.soc__ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#fff;flex:none}
+.soc__ic svg{width:18px;height:18px}
+.soc .input{background:#fff}
+.soc__x{all:unset;box-sizing:border-box;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:var(--muted);cursor:pointer}
+.soc__x:hover{background:#fff;color:var(--ink)}
+.soc__x:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.soc__x svg{width:16px;height:16px;transform:rotate(45deg)}
+@media (max-width:700px){.soc{grid-template-columns:minmax(0,1fr) 40px}.soc__p{grid-column:1}.soc__x{grid-column:2;grid-row:1}.soc .input{grid-column:1/-1}}
+.socials__more{margin-top:10px;max-width:280px}
+#err-af_socials{margin-top:10px}
+.reach{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:18px;padding:14px 18px;border-radius:12px;background:var(--teal-wash);color:var(--teal-ink);font-size:15px;font-weight:600}
+.reach b{font-size:24px;letter-spacing:-.02em;color:var(--ink)}
+.aff__done{text-align:center;padding:clamp(24px,5vw,56px) 0}
+.aff__done[hidden]{display:none}
+.aff__done:focus{outline:none}
+.aff__ok{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--teal-wash);color:var(--teal)}
+.aff__ok svg{width:34px;height:34px}
+.aff__done h3{margin-top:18px;font-size:28px;letter-spacing:-.02em}
+.aff__done p{margin:10px auto 0;max-width:44ch;color:var(--muted);font-size:17px}
 </style>
 </head>
 <body class="page-start">
@@ -675,11 +721,49 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
 <header class="nav" id="nav">
   <div class="wrap nav__in">
     <a class="logo wm" href="./" aria-label="PepTech home"><span class="wm__a">Pep</span><span class="wm__b">Tech</span></a>
+    <a class="btn btn--sm btn--ghost nav__aff" href="#affiliate">Become an affiliate</a>
     <a class="btn btn--sm btn--call" href="#onboard" data-cta="nav">Send brand details</a>
   </div>
 </header>
 
 <main id="top">
+  <section class="section section--tight" id="paths" aria-labelledby="pathsTitle">
+    <div class="wrap">
+      <div class="section__head rv">
+        <h2 id="pathsTitle">Start your brand today. Or get paid to share one.</h2>
+        <p>Two ways to work with PepTech. Pick the one that fits you.</p>
+      </div>
+      <div class="ways rv">
+        <article class="way">
+          <p class="way__k mono">01 &middot; Start your brand</p>
+          <p class="way__big"><span class="way__amt">$5,000</span><span class="way__per">one-time launch</span></p>
+          <p class="way__lead">We build your brand and run the business behind it.</p>
+          <ul class="way__list">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Your logo on the full product line</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>A branded store connected to your website</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Inventory, fulfillment and shipping handled</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Affiliate sales built into your brand</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>A dedicated partner manager</li>
+          </ul>
+          <a class="btn btn--call way__cta" href="#build">Start your brand <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
+        <article class="way way--dark">
+          <p class="way__k mono">02 &middot; Become an affiliate</p>
+          <p class="way__big"><span class="way__amt">$5,000</span><span class="way__per">what top affiliates can make</span></p>
+          <p class="way__lead">Share PepTech brands with your audience and earn on every sale.</p>
+          <ul class="way__list">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Your own tracked link and code</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Commission on every order you send</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Instagram, TikTok, YouTube and Facebook creators</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Approval based on your reach and engagement</li>
+          </ul>
+          <a class="btn way__cta way__cta--light" href="#affiliate">Apply as an affiliate <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <p class="way__fine">Earnings depend on your audience and sales. Not a guarantee of income.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="build">
     <div class="wrap">
       <div class="starthead rv"><div class="section__head">
@@ -830,6 +914,80 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
               <div><dt>Click tracking</dt><dd>Turns on once your partner manager confirms your setup.</dd></div>
             </dl>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section--mist" id="affiliate" aria-labelledby="affTitle">
+    <div class="wrap">
+      <div class="section__head rv">
+        <h2 id="affTitle">Apply to be a PepTech affiliate.</h2>
+        <p>Tell us where you post and how many people follow you. We review every account before approval, so the more you share, the faster we can say yes.</p>
+      </div>
+      <div class="ob__panel aff rv" id="affPanel">
+        <div class="form__alert" id="affAlert" role="alert"></div>
+        <form id="affForm" novalidate>
+          <div class="ob__part">
+            <div class="ob__ph"><span class="ob__pn mono" aria-hidden="true">01</span><div><h3>About you</h3><p>So we know who to approve and how to reach you.</p></div></div>
+            <div class="row">
+              <div class="field"><label for="af_name">Full name</label><input class="input" id="af_name" autocomplete="name" required aria-describedby="err-af_name"><p class="err" id="err-af_name"><svg width="16" height="16" aria-hidden="true"><use href="#i-alert"/></svg>Enter your name.</p></div>
+              <div class="field"><label for="af_email">Email</label><input class="input" id="af_email" type="email" autocomplete="email" inputmode="email" required aria-describedby="err-af_email"><p class="err" id="err-af_email"><svg width="16" height="16" aria-hidden="true"><use href="#i-alert"/></svg>Enter a valid email, like you@gmail.com.</p></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="af_phone">Phone <span class="hint">Optional</span></label><input class="input" id="af_phone" type="tel" autocomplete="tel" inputmode="tel"></div>
+              <div class="field"><label for="af_city">City and state</label><input class="input" id="af_city" autocomplete="address-level2" placeholder="Irvine, CA" required aria-describedby="err-af_city"><p class="err" id="err-af_city"><svg width="16" height="16" aria-hidden="true"><use href="#i-alert"/></svg>Enter where you're based.</p></div>
+            </div>
+          </div>
+
+          <div class="ob__part">
+            <div class="ob__ph"><span class="ob__pn mono" aria-hidden="true">02</span><div><h3>Your social media</h3><p>Fill in every account you post on. Use your real follower count.</p></div></div>
+            <div class="socials" id="afSocials"></div>
+            <div class="socials__more">
+              <label for="af_add" class="sr-only">Add another platform</label>
+              <select class="input" id="af_add"><option value="">+ Add another platform</option></select>
+            </div>
+            <p class="err" id="err-af_socials"><svg width="16" height="16" aria-hidden="true"><use href="#i-alert"/></svg>Add at least one account with your handle and follower count.</p>
+            <div class="reach" aria-live="polite"><span>Total followers</span><b class="mono" id="afTotal">0</b></div>
+          </div>
+
+          <div class="ob__part">
+            <div class="ob__ph"><span class="ob__pn mono" aria-hidden="true">03</span><div><h3>Your audience</h3><p>Who sees your posts and how they engage.</p></div></div>
+            <div class="row">
+              <div class="field"><label for="af_niche">What do you post about?</label>
+                <select class="input" id="af_niche" required aria-describedby="err-af_niche"><option value="">Select your main niche</option><option>Fitness and training</option><option>Bodybuilding</option><option>Health and longevity</option><option>Biohacking</option><option>Beauty and skincare</option><option>Weight loss</option><option>Lifestyle</option><option>Clinic or medical practice</option><option>Other</option></select>
+                <p class="err" id="err-af_niche"><svg width="16" height="16" aria-hidden="true"><use href="#i-alert"/></svg>Pick the closest niche. "Other" is fine.</p></div>
+              <div class="field"><label for="af_where">Where is most of your audience?</label>
+                <select class="input" id="af_where"><option>United States</option><option>Canada</option><option>United Kingdom</option><option>Australia</option><option>Other</option><option>Not sure</option></select></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="af_views">Average views per post <span class="hint">Optional</span></label><input class="input" id="af_views" inputmode="numeric" placeholder="e.g. 12,000" data-num></div>
+              <div class="field"><label for="af_eng">Average likes or comments per post <span class="hint">Optional</span></label><input class="input" id="af_eng" inputmode="numeric" placeholder="e.g. 800" data-num></div>
+            </div>
+            <div class="field"><label for="af_brands">Brands you've promoted before <span class="hint">Optional</span></label><input class="input" id="af_brands" placeholder="Brand names or links"></div>
+            <div class="field">
+              <span class="label" id="afShotsLbl">Analytics screenshots <span class="hint">Optional, speeds up approval</span></span>
+              <label class="drop drop--light" aria-labelledby="afShotsLbl">
+                <span class="drop__ic"><svg width="20" height="20" aria-hidden="true"><use href="#i-plus"/></svg></span>
+                <span><span class="drop__t" id="afShotsT">Add screenshots of your insights</span><span class="drop__d">Followers, reach and audience pages. Up to 5 images, 10 MB total.</span></span>
+                <input type="file" id="af_shots" class="sr-only" multiple accept="image/*">
+              </label>
+              <p class="err" id="err-af_shots"><svg width="16" height="16" aria-hidden="true"><use href="#i-alert"/></svg><span id="afShotsMsg"></span></p>
+            </div>
+            <div class="field"><label for="af_why">Why do you want to partner with PepTech? <span class="hint">Optional</span></label><textarea class="input ob__notes" id="af_why" rows="3"></textarea></div>
+          </div>
+
+          <input type="text" id="af_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="consent"><input type="checkbox" id="af_consent" required aria-describedby="err-af_consent"><span>These accounts are mine and the numbers are accurate. PepTech may review my profiles before approving me.</span></label>
+          <p class="err" id="err-af_consent" style="margin-top:-16px;margin-bottom:20px"><svg width="16" height="16" aria-hidden="true"><use href="#i-alert"/></svg>Please confirm so we can review your accounts.</p>
+          <div class="form__actions">
+            <button class="btn btn--primary" type="submit" id="afSubmit">Apply as an affiliate <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <p class="ob__fine ob__fine--lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>No passwords needed. We only look at public profiles.</p>
+          </div>
+        </form>
+        <div class="aff__done" id="affDone" hidden tabindex="-1">
+          <span class="aff__ok"><svg aria-hidden="true"><use href="#i-check-circle"/></svg></span>
+          <h3>Application received.</h3>
+          <p>We'll review your accounts and email you at <b id="affDoneEmail"></b> with next steps.</p>
         </div>
       </div>
     </div>
@@ -1130,6 +1288,118 @@ $$(".rv").forEach(el => io.observe(el));
 
 /* Remember a partner's referral code when a visitor arrives through their link */
 (() => { const r = params.get("ref"); if (r) { try { localStorage.setItem("pl_ref", r.slice(0, 64)); } catch {} } })();
+</script>
+<script>
+/* Affiliate application (PepTech only): socials with follower counts -> the PepTech inbox through FormSubmit */
+(() => {
+  const $ = s => document.querySelector(s), form = $("#affForm"); if (!form) return;
+  const ICON = {
+    ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>',
+    tt: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.3 2.3 1.7 3.8 4 4v3.1a7.6 7.6 0 0 1-4-1.2v6.3c0 3.9-3.6 6.5-7.2 5.6-4.5-1.1-5.6-6.8-2-9.6 1.2-.9 2.6-1.3 4.1-1.1v3.3c-1.6-.5-3.2.5-3.1 2.1.1 1.9 2.4 2.7 3.6 1.6.5-.5.8-1.1.8-1.9V3z"/></svg>',
+    yt: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2c-.2-1.6-1-2.6-2.6-2.8C17.2 5.1 12 5.1 12 5.1s-5.2 0-7.4.3C3 5.6 2.2 6.6 2 8.2a33 33 0 0 0 0 7.6c.2 1.6 1 2.6 2.6 2.8 2.2.3 7.4.3 7.4.3s5.2 0 7.4-.3c1.6-.2 2.4-1.2 2.6-2.8a33 33 0 0 0 0-7.6zM10 15.2V8.8l5.2 3.2z"/></svg>',
+    fb: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.5V21z"/></svg>',
+    x: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg>',
+    gen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 2.5 14.4 0 17M12 3.5c-2.5 2.6-2.5 14.4 0 17"/></svg>'
+  };
+  const P = {
+    instagram: ["Instagram", "ig", "linear-gradient(135deg,#F9A73E,#E1306C 55%,#833AB4)", "@yourhandle"],
+    tiktok: ["TikTok", "tt", "#111", "@yourhandle"],
+    youtube: ["YouTube", "yt", "#E62117", "@yourchannel"],
+    facebook: ["Facebook", "fb", "#1877F2", "Page or profile link"],
+    x: ["X (Twitter)", "x", "#111", "@yourhandle"],
+    snapchat: ["Snapchat", "gen", "#E8C800", "Username"],
+    threads: ["Threads", "gen", "#111", "@yourhandle"],
+    twitch: ["Twitch", "gen", "#9146FF", "Channel name"],
+    pinterest: ["Pinterest", "gen", "#E60023", "Profile link"],
+    linkedin: ["LinkedIn", "gen", "#0A66C2", "Profile link"],
+    podcast: ["Podcast", "gen", "#5F6673", "Show name or link"],
+    other: ["Other", "gen", "#5F6673", "Platform and handle"]
+  };
+  const list = $("#afSocials"), add = $("#af_add"), total = $("#afTotal");
+  const num = v => +String(v).replace(/[^\d]/g, "") || 0;
+  const fmt = n => n.toLocaleString("en-US");
+  const short = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M" : n >= 1e3 ? (n / 1e3).toFixed(1).replace(/\.0$/, "") + "K" : String(n);
+  const rows = () => [...list.querySelectorAll(".soc")];
+  const sum = () => { total.textContent = fmt(rows().reduce((a, r) => a + num(r.querySelector("[data-f]").value), 0)); };
+  const syncAdd = () => {
+    const used = new Set(rows().map(r => r.dataset.p));
+    add.innerHTML = '<option value="">+ Add another platform</option>' + Object.entries(P).filter(([k]) => k === "other" || !used.has(k)).map(([k, [n]]) => `<option value="${k}">${n}</option>`).join("");
+  };
+  const row = (key, removable) => {
+    const [name, ic, bg, ph] = P[key], id = "af_" + key + "_" + rows().length;
+    const el = document.createElement("div");
+    el.className = "soc"; el.dataset.p = key;
+    el.innerHTML = `<span class="soc__p"><span class="soc__ic" style="background:${bg}" aria-hidden="true">${ICON[ic]}</span>${name}</span>
+      <label class="sr-only" for="${id}h">${name} handle or link</label><input class="input" id="${id}h" data-h placeholder="${ph}" autocapitalize="none" spellcheck="false">
+      <label class="sr-only" for="${id}f">${name} followers</label><input class="input mono" id="${id}f" data-f inputmode="numeric" placeholder="Followers">
+      ${removable ? `<button type="button" class="soc__x" aria-label="Remove ${name}"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>` : "<span></span>"}`;
+    el.querySelector(".soc__x")?.addEventListener("click", () => { el.remove(); sum(); syncAdd(); add.focus(); });
+    list.append(el); return el;
+  };
+  ["instagram", "tiktok", "youtube", "facebook"].forEach(k => row(k, false));
+  syncAdd();
+  add.addEventListener("change", () => { if (!add.value) return; const r = row(add.value, true); add.value = ""; syncAdd(); r.querySelector("[data-h]").focus(); });
+  // follower and view counts read as numbers with commas while typing
+  form.addEventListener("input", e => {
+    const t = e.target;
+    if (t.matches("[data-f],[data-num]")) { const n = num(t.value); t.value = n ? fmt(n) : ""; }
+    if (t.matches("[data-f],[data-h]")) { sum(); if (filled().length) { $("#err-af_socials").classList.remove("is-on"); } }
+  });
+  const filled = () => rows().map(r => ({ p: P[r.dataset.p][0], h: r.querySelector("[data-h]").value.trim(), f: num(r.querySelector("[data-f]").value) })).filter(s => s.h && s.f);
+
+  let shots = [];
+  $("#af_shots").addEventListener("change", e => {
+    const fs = [...e.target.files].filter(f => f.type.startsWith("image/")).slice(0, 5), size = fs.reduce((a, f) => a + f.size, 0);
+    const err = $("#err-af_shots");
+    if (size > 10 * 1024 * 1024) { shots = []; e.target.value = ""; $("#afShotsMsg").textContent = "Those images are over 10 MB together. Try fewer or smaller screenshots."; err.classList.add("is-on"); $("#afShotsT").textContent = "Add screenshots of your insights"; return; }
+    err.classList.remove("is-on"); shots = fs;
+    $("#afShotsT").textContent = fs.length ? `${fs.length} screenshot${fs.length > 1 ? "s" : ""} added` : "Add screenshots of your insights";
+  });
+
+  const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+  const checks = [["#af_name", v => v.trim()], ["#af_email", emailOk], ["#af_city", v => v.trim()], ["#af_niche", v => v]];
+  const mark = (el, errId, good) => { el && el.setAttribute("aria-invalid", !good); $(errId).classList.toggle("is-on", !good); };
+  checks.forEach(([sel, test]) => $(sel).addEventListener("input", e => { if (e.target.getAttribute("aria-invalid") === "true" && test(e.target.value)) mark(e.target, "#err-" + sel.slice(1), true); }));
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const alert = $("#affAlert"); alert.style.display = "none";
+    if ($("#af_honey").value) return;
+    let ok = true;
+    checks.forEach(([sel, test]) => { const good = !!test($(sel).value); mark($(sel), "#err-" + sel.slice(1), good); ok = ok && good; });
+    const socials = filled();
+    $("#err-af_socials").classList.toggle("is-on", !socials.length); ok = ok && socials.length > 0;
+    const c = $("#af_consent").checked; mark($("#af_consent"), "#err-af_consent", c); ok = ok && c;
+    if (!ok) { const bad = form.querySelector('[aria-invalid="true"]') || (!socials.length && list.querySelector("[data-h]")); bad && bad.focus(); return; }
+
+    const name = $("#af_name").value.trim(), email = $("#af_email").value.trim(), reach = socials.reduce((a, s) => a + s.f, 0);
+    const fd = new FormData();
+    Object.entries({
+      _subject: `Affiliate application: ${name} (${short(reach)} followers)`, _template: "table", _replyto: email, _captcha: "false",
+      "Form": "Affiliate application", "Name": name, "Email": email, "Phone": $("#af_phone").value.trim(), "City / state": $("#af_city").value.trim(),
+      "Total followers": fmt(reach),
+      ...Object.fromEntries(socials.map((s, i) => [`${s.p}${socials.filter(x => x.p === s.p).length > 1 ? " " + (i + 1) : ""}`, `${s.h}  ·  ${fmt(s.f)} followers`])),
+      "Niche": $("#af_niche").value, "Audience mostly in": $("#af_where").value,
+      "Avg views per post": $("#af_views").value, "Avg likes/comments per post": $("#af_eng").value,
+      "Brands promoted before": $("#af_brands").value.trim(), "Why PepTech": $("#af_why").value.trim(),
+      "Screenshots": shots.length ? `${shots.length} attached` : "None", "Page": location.href.split("#")[0]
+    }).forEach(([k, v]) => v && fd.append(k, v));
+    shots.forEach(f => fd.append("attachment", f, f.name));
+
+    const btn = $("#afSubmit"), label = btn.innerHTML;
+    btn.setAttribute("aria-busy", "true"); btn.disabled = true; btn.innerHTML = `<span class="spin" aria-hidden="true"></span>Sending`;
+    let sent = false;
+    try {
+      const r = await fetch(`https://formsubmit.co/ajax/${CONFIG.intakeEmail || CONFIG.leadEmail}`, { method: "POST", headers: { Accept: "application/json" }, body: fd });
+      const j = await r.json().catch(() => ({}));
+      sent = String(j.success) === "true" || /activat/i.test(j.message || "");
+    } catch {}
+    btn.removeAttribute("aria-busy"); btn.disabled = false; btn.innerHTML = label;
+    if (!sent) { alert.textContent = "We couldn't send your application. Check your connection and try again, or email us your handles."; alert.style.display = "block"; alert.scrollIntoView({ block: "center" }); return; }
+    form.hidden = true; $("#affDoneEmail").textContent = email; $("#affDone").hidden = false; $("#affDone").focus();
+    $("#affiliate").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  });
+})();
 </script>
 </body>
 </html>

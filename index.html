@@ -661,6 +661,10 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
    It reads the same labeled fields that go out by email; files stay in the email. A failure here never affects the form. */
 (() => {
   const API = "https://peptech-affiliates.netlify.app/api/apply", send = window.fetch;
+  // Team invite links (?team=CODE) put a new affiliate under the affiliate who invited them; remembered for 30 days.
+  const team = new URLSearchParams(location.search).get("team");
+  try { if (team && /^[A-Za-z0-9]{3,20}$/.test(team)) localStorage.setItem("pt_team", JSON.stringify({ code: team.toUpperCase(), ts: Date.now() })); } catch {}
+  const invite = () => { try { const t = JSON.parse(localStorage.getItem("pt_team")); return t && Date.now() - t.ts < 30 * 864e5 ? t.code : ""; } catch { return ""; } };
   window.fetch = async function (url, opts) {
     const res = await send.apply(this, arguments);
     try {
@@ -670,6 +674,7 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
           if (String(j.success) !== "true" && !/activat/i.test(j.message || "")) return;
           const data = {};
           for (const [k, v] of body) if (typeof v === "string") data[k] = v;
+          if (/^Affiliate/i.test(data.Form || "") && invite()) data["Team invite"] = invite();
           send(API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data), keepalive: true }).catch(() => {});
         }).catch(() => {});
       }

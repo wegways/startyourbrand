@@ -656,6 +656,28 @@ textarea.input.ob__notes{height:auto;min-height:96px;padding:12px 14px;resize:ve
 .aff__done p{margin:10px auto 0;max-width:44ch;color:var(--muted);font-size:17px}
 /*aff:end*/
 </style>
+<script>
+/* PepTech only: every form that emails successfully is also saved to the affiliate dashboard (peptech-affiliates.netlify.app).
+   It reads the same labeled fields that go out by email; files stay in the email. A failure here never affects the form. */
+(() => {
+  const API = "https://peptech-affiliates.netlify.app/api/apply", send = window.fetch;
+  window.fetch = async function (url, opts) {
+    const res = await send.apply(this, arguments);
+    try {
+      const body = opts && opts.body;
+      if (String(url).includes("formsubmit.co/ajax/") && body instanceof FormData && !String(body.get("_subject") || "").startsWith("[")) {
+        res.clone().json().then(j => {
+          if (String(j.success) !== "true" && !/activat/i.test(j.message || "")) return;
+          const data = {};
+          for (const [k, v] of body) if (typeof v === "string") data[k] = v;
+          send(API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data), keepalive: true }).catch(() => {});
+        }).catch(() => {});
+      }
+    } catch {}
+    return res;
+  };
+})();
+</script>
 </head>
 <body class="page-start">
 <a class="skip" href="#apply">Skip to the partner application</a>
